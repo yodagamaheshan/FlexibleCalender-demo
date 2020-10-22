@@ -14,14 +14,16 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     ///   - interval:
     ///   - selectedMonth: date relevent to showing month, then you can extract the componnets
     ///   - content:
-    init(interval: DateInterval, selectedMonth: Binding<Date>, @ViewBuilder content: @escaping (Date) -> DateView) {
+    init(interval: DateInterval, selectedMonth: Binding<Date>, mode: CalenderMode, @ViewBuilder content: @escaping (Date) -> DateView) {
         self.interval = interval
         self._selectedMonth = selectedMonth
+        self.mode = mode
         self.content = content
     }
     
     @Environment(\.calendar) var calendar
     let interval: DateInterval
+    var mode: CalenderMode
     let content: (Date) -> DateView
     @Binding var selectedMonth: Date
     
@@ -55,6 +57,8 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
         )
     }
     
+    
+    
     private func days(for month: Date) -> [Date] {
         guard
             let monthInterval = calendar.dateInterval(of: .month, for: month),
@@ -69,7 +73,7 @@ struct CalendarView_Previews: PreviewProvider {
     
     
     static var previews: some View {
-        FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2019 08 11")!, end: Date.getDate(from: "2021 08 11")!), selectedMonth: .constant(Date())) { date in
+        FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2019 08 11")!, end: Date.getDate(from: "2021 08 11")!), selectedMonth: .constant(Date()), mode: .month) { date in
             
             Text(date.day)
                 .padding(8)
