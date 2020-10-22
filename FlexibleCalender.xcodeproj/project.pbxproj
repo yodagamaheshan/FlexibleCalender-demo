@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB7435702541540F008ED28B /* SwiftUIViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74356F2541540F008ED28B /* SwiftUIViewTest.swift */; };
 		FB9C4D4525413D1D00CAC446 /* FlexibleCalenderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D4425413D1D00CAC446 /* FlexibleCalenderApp.swift */; };
 		FB9C4D4725413D1D00CAC446 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D4625413D1D00CAC446 /* ContentView.swift */; };
 		FB9C4D4925413D1E00CAC446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB9C4D4825413D1E00CAC446 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB74356F2541540F008ED28B /* SwiftUIViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewTest.swift; sourceTree = "<group>"; };
 		FB9C4D4125413D1D00CAC446 /* FlexibleCalender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexibleCalender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9C4D4425413D1D00CAC446 /* FlexibleCalenderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleCalenderApp.swift; sourceTree = "<group>"; };
 		FB9C4D4625413D1D00CAC446 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				FB9C4D7225413DBF00CAC446 /* FlexibleCalenderView.swift */,
 				FB9C4D4825413D1E00CAC446 /* Assets.xcassets */,
 				FB9C4D4D25413D1E00CAC446 /* Info.plist */,
+				FB74356F2541540F008ED28B /* SwiftUIViewTest.swift */,
 				FB9C4D4A25413D1E00CAC446 /* Preview Content */,
 			);
 			path = FlexibleCalender;
@@ -277,6 +280,7 @@
 				FB9C4D4725413D1D00CAC446 /* ContentView.swift in Sources */,
 				FB9C4D4525413D1D00CAC446 /* FlexibleCalenderApp.swift in Sources */,
 				FB9C4D7325413DBF00CAC446 /* FlexibleCalenderView.swift in Sources */,
+				FB7435702541540F008ED28B /* SwiftUIViewTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var selectedMonthDate = Date()
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text(selectedMonthDate.description)
+            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2019 08 11")!, end: Date.getDate(from: "2021 08 11")!), selectedMonth: $selectedMonthDate) { date in
+                
+                Text(date.day)
+                    .padding(8)
+                    .background(Color.blue)
+                    .cornerRadius(8)
+            }
+        }
     }
 }
 
