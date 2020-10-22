@@ -13,6 +13,8 @@
 		FB9C4D4C25413D1E00CAC446 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB9C4D4B25413D1E00CAC446 /* Preview Assets.xcassets */; };
 		FB9C4D5725413D1E00CAC446 /* FlexibleCalenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D5625413D1E00CAC446 /* FlexibleCalenderTests.swift */; };
 		FB9C4D6225413D1E00CAC446 /* FlexibleCalenderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D6125413D1E00CAC446 /* FlexibleCalenderUITests.swift */; };
+		FB9C4D7325413DBF00CAC446 /* FlexibleCalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D7225413DBF00CAC446 /* FlexibleCalenderView.swift */; };
+		FB9C4D792541412100CAC446 /* Date+dateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D782541412100CAC446 /* Date+dateFormat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		FB9C4D5D25413D1E00CAC446 /* FlexibleCalenderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexibleCalenderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9C4D6125413D1E00CAC446 /* FlexibleCalenderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleCalenderUITests.swift; sourceTree = "<group>"; };
 		FB9C4D6325413D1E00CAC446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB9C4D7225413DBF00CAC446 /* FlexibleCalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleCalenderView.swift; sourceTree = "<group>"; };
+		FB9C4D782541412100CAC446 /* Date+dateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+dateFormat.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +99,10 @@
 		FB9C4D4325413D1D00CAC446 /* FlexibleCalender */ = {
 			isa = PBXGroup;
 			children = (
+				FB9C4D7725413F8300CAC446 /* Extension */,
 				FB9C4D4425413D1D00CAC446 /* FlexibleCalenderApp.swift */,
 				FB9C4D4625413D1D00CAC446 /* ContentView.swift */,
+				FB9C4D7225413DBF00CAC446 /* FlexibleCalenderView.swift */,
 				FB9C4D4825413D1E00CAC446 /* Assets.xcassets */,
 				FB9C4D4D25413D1E00CAC446 /* Info.plist */,
 				FB9C4D4A25413D1E00CAC446 /* Preview Content */,
@@ -128,6 +134,14 @@
 				FB9C4D6325413D1E00CAC446 /* Info.plist */,
 			);
 			path = FlexibleCalenderUITests;
+			sourceTree = "<group>";
+		};
+		FB9C4D7725413F8300CAC446 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FB9C4D782541412100CAC446 /* Date+dateFormat.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB9C4D792541412100CAC446 /* Date+dateFormat.swift in Sources */,
 				FB9C4D4725413D1D00CAC446 /* ContentView.swift in Sources */,
 				FB9C4D4525413D1D00CAC446 /* FlexibleCalenderApp.swift in Sources */,
+				FB9C4D7325413DBF00CAC446 /* FlexibleCalenderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
