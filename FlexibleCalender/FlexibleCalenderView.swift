@@ -34,6 +34,7 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
             ForEach(months, id: \.self) { month in
                 
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
+                    
                     ForEach(days(for: month), id: \.self) { date in
                         if calendar.isDate(date, equalTo: month, toGranularity: .month) {
                             content(date).id(date)
@@ -53,8 +54,7 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     }
     
     private var months: [Date] {
-        calendar.generateDates( inside: interval,matching: DateComponents(day: 1, hour: 0, minute: 0, second:0)
-        )
+        calendar.generateDates( inside: interval,matching: DateComponents(day: 1, hour: 0, minute: 0, second:0))
     }
     
     
@@ -71,15 +71,30 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
 }
 struct CalendarView_Previews: PreviewProvider {
     
+    @State static var selectedMonthDate = Date()
     
     static var previews: some View {
-        FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2019 08 11")!, end: Date.getDate(from: "2021 08 11")!), selectedMonth: .constant(Date()), mode: .month) { date in
+        VStack {
+            Text(selectedMonthDate.description)
+            HStack {
+                ForEach(Calendar.current.veryShortWeekdaySymbols, id: \.self) { item in
+                    Spacer()
+                    Text(item)
+                        .bold()
+                    Spacer()
+                    
+                }
+            }
             
-            Text(date.day)
-                .padding(8)
-                .background(Color.blue)
-                .cornerRadius(8)
+            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month) { date in
+                
+                Text(date.day)
+                    .padding(8)
+                    .background(Color.blue)
+                    .cornerRadius(8)
+            }
         }
+        
     }
 }
 
@@ -100,16 +115,21 @@ fileprivate extension DateFormatter {
 fileprivate extension Calendar {
     func generateDates(inside interval: DateInterval, matching components: DateComponents) -> [Date] {
         var dates: [Date] = []
+        
         dates.append(interval.start)
+       
         enumerateDates(startingAfter: interval.start, matching: components, matchingPolicy: .nextTime) { date, _, stop in
+            
             if let date = date {
                 if date < interval.end {
                     dates.append(date)
+                
                 } else {
                     stop = true
                 }
             }
         }
+        print(dates)
         return dates
     }
 }
