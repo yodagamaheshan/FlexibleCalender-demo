@@ -82,7 +82,7 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     }
     
     private var weeks: [Date] {
-        calendar.generateDates( inside: interval,matching: DateComponents(weekday: 2) )
+        calendar.generateDates( inside: interval,matching: DateComponents(hour: 0, minute: 0, second:0, weekday: 2) )
     }
     
     
@@ -96,6 +96,7 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
         )
     }
     
+    //fixme: change method signature to match aove
     private func days(forWeek: Date) -> [Date] {
         guard
             let weekInterval = calendar.dateInterval(of: .weekOfMonth, for: forWeek)
