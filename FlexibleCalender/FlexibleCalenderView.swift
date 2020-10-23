@@ -31,7 +31,7 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     var body: some View {
         
         TabView(selection: $selectedMonth) {
-           
+            
             if mode == .month {
                 
                 ForEach(months, id: \.self) { month in
@@ -50,8 +50,26 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                     .frame(width: 400, alignment: .center)
                     .tag(month)
                 }
+                
             } else {
                 
+                ForEach(weeks, id: \.self) { week in
+                    
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
+                        
+                        ForEach(days(forWeek: week), id: \.self) { date in
+                            if calendar.isDate(date, equalTo: week, toGranularity: .month) {
+                                content(date).id(date)
+                            } else {
+                                content(date)
+                                    .opacity(0.5)
+                            }
+                        }
+                    }
+                    //Fixme
+                    .frame(width: 400, alignment: .center)
+                    .tag(week)
+                }
             }
             
         }
@@ -77,7 +95,17 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
         return calendar.generateDates( inside: DateInterval(start: monthFirstWeek.start, end: monthLastWeek.end), matching: DateComponents(hour: 0, minute: 0, second: 0)
         )
     }
+    
+    private func days(forWeek: Date) -> [Date] {
+        guard
+            let weekInterval = calendar.dateInterval(of: .weekOfMonth, for: forWeek)
+        else { return [] }
+        
+        let days = calendar.generateDates( inside: DateInterval(start: weekInterval.start, end: weekInterval.end), matching: DateComponents(hour: 0, minute: 0, second: 0))
+        return days
+    }
 }
+
 struct CalendarView_Previews: PreviewProvider {
     
     @State static var selectedMonthDate = Date()
@@ -95,7 +123,7 @@ struct CalendarView_Previews: PreviewProvider {
                 }
             }
             
-            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month) { date in
+            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .week) { date in
                 
                 Text(date.day)
                     .padding(8)
