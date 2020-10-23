@@ -27,25 +27,31 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     let content: (Date) -> DateView
     @Binding var selectedMonth: Date
     
+    @ViewBuilder
     var body: some View {
         
         TabView(selection: $selectedMonth) {
-            
-            ForEach(months, id: \.self) { month in
+           
+            if mode == .month {
                 
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
+                ForEach(months, id: \.self) { month in
                     
-                    ForEach(days(for: month), id: \.self) { date in
-                        if calendar.isDate(date, equalTo: month, toGranularity: .month) {
-                            content(date).id(date)
-                        } else {
-                            content(date).hidden()
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
+                        
+                        ForEach(days(for: month), id: \.self) { date in
+                            if calendar.isDate(date, equalTo: month, toGranularity: .month) {
+                                content(date).id(date)
+                            } else {
+                                content(date).hidden()
+                            }
                         }
                     }
+                    //Fixme
+                    .frame(width: 400, alignment: .center)
+                    .tag(month)
                 }
-                //Fixme
-                .frame(width: 400, alignment: .center)
-                .tag(month)
+            } else {
+                
             }
             
         }
@@ -57,6 +63,9 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
         calendar.generateDates( inside: interval,matching: DateComponents(day: 1, hour: 0, minute: 0, second:0))
     }
     
+    private var weeks: [Date] {
+        calendar.generateDates( inside: interval,matching: DateComponents(weekday: 2) )
+    }
     
     
     private func days(for month: Date) -> [Date] {
@@ -117,13 +126,13 @@ fileprivate extension Calendar {
         var dates: [Date] = []
         
         dates.append(interval.start)
-       
+        
         enumerateDates(startingAfter: interval.start, matching: components, matchingPolicy: .nextTime) { date, _, stop in
             
             if let date = date {
                 if date < interval.end {
                     dates.append(date)
-                
+                    
                 } else {
                     stop = true
                 }
