@@ -17,7 +17,9 @@ struct ContentView: View {
                 
                 DateCell(date: date)
             }
-            Spacer()
+            Button("Change mode") {
+                mode = (mode == .month ? CalenderMode.week:.month)
+            }
         }
     }
 }
