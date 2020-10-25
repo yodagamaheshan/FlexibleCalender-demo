@@ -33,7 +33,7 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                     
                     ForEach(viewModel.months, id: \.self) { month in
                         
-                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: numberOfDayasInAWeek)) {
                             
                             ForEach(viewModel.days(for: month), id: \.self) { date in
                                 if viewModel.calendar.isDate(date, equalTo: month, toGranularity: .month) {
@@ -44,11 +44,11 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                             }
                         }
                         .background(Color.green)
-                        //Fixme
-                        .frame(width: 400, alignment: .center)
                         .tag(month)
                     }
                 }
+                //Fixme
+                .frame(height: 220, alignment: .center)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             } else {
@@ -59,7 +59,7 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                         
                         ForEach(viewModel.weeks, id: \.self) { week in
                             
-                            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
+                            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: numberOfDayasInAWeek)) {
                                 
                                 ForEach(viewModel.days(forWeek: week), id: \.self) { date in
                                     if viewModel.calendar.isDate(date, equalTo: week, toGranularity: .month) {
@@ -71,11 +71,11 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                                 }
                             }
                             .background(Color.yellow)
-                            //Fixme
-                            .frame(width: 400, height: 200, alignment: .center)
                             .tag(week)
                         }
                     }
+                    //Fixme
+                    .frame(height: 37, alignment: .center)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
             }
@@ -83,7 +83,7 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     }
     
     //MARK: constant and supportive methods
-    
+    let numberOfDayasInAWeek = 7
     
 }
 
