@@ -8,12 +8,15 @@
 import SwiftUI
 
 class FlexibleCalenderViewModel {
-    init(interval: DateInterval) {
+    //Fixme: change var names "mode"
+    init(interval: DateInterval, mode: CalenderMode) {
         self.interval = interval
+        self.mode = mode
     }
     
     @Environment(\.calendar) var calendar
     let interval: DateInterval
+    var mode: CalenderMode
     
     var months: [Date] {
         calendar.generateDates( inside: interval,matching: DateComponents(day: 1, hour: 0, minute: 0, second:0))

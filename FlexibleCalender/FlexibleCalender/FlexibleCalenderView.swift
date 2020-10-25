@@ -15,21 +15,19 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     ///   - selectedMonth: date relevent to showing month, then you can extract the componnets
     ///   - content:
     init(interval: DateInterval, selectedMonth: Binding<Date>, mode: CalenderMode, @ViewBuilder content: @escaping (Date) -> DateView) {
-        self.viewModel = .init(interval: interval)
+        self.viewModel = .init(interval: interval, mode: mode)
         self._selectedMonth = selectedMonth
-        self.mode = mode
         self.content = content
     }
     
     var viewModel: FlexibleCalenderViewModel
-    var mode: CalenderMode
     let content: (Date) -> DateView
     @Binding var selectedMonth: Date
     
     var body: some View {
         
         VStack {
-            if mode == .month {
+            if viewModel.mode == .month {
                 
                 TabView(selection: $selectedMonth) {
                     
