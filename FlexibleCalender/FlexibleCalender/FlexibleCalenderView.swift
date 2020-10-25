@@ -26,13 +26,13 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     let content: (Date) -> DateView
     @Binding var selectedMonth: Date
     
-    
     var body: some View {
         
         VStack {
             if mode == .month {
                 
                 TabView(selection: $selectedMonth) {
+                    
                     ForEach(viewModel.months, id: \.self) { month in
                         
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
@@ -56,9 +56,11 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
             } else {
                 
                 VStack {
+                    
                     TabView(selection: $selectedMonth) {
+                        
                         ForEach(viewModel.weeks, id: \.self) { week in
-
+                            
                             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                                 
                                 ForEach(viewModel.days(forWeek: week), id: \.self) { date in
@@ -79,11 +81,7 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
             }
-            
-            
         }
-        
-        
     }
     
     //MARK: constant and supportive methods
