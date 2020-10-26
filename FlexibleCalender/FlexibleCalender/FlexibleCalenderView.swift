@@ -23,6 +23,9 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     var viewModel: FlexibleCalenderViewModel
     let content: (Date) -> DateView
     @Binding var selectedMonth: Date
+    //TODO: get the maximum from 2 of htis
+    @State private var cellContainerSize: CGSize = .init(width: 30, height: 200)
+    @State private var contentCellSize: CGSize = .init(width: 30, height: 1)
     
     var body: some View {
         
@@ -33,22 +36,34 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                     
                     ForEach(viewModel.months, id: \.self) { month in
                         
-                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: numberOfDayasInAWeek)) {
-                            
-                            ForEach(viewModel.days(for: month), id: \.self) { date in
-                                if viewModel.calendar.isDate(date, equalTo: month, toGranularity: .month) {
-                                    content(date).id(date)
-                                } else {
-                                    content(date).hidden()
+                        VStack {
+                            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: numberOfDayasInAWeek), spacing: 0) {
+                                
+                                ForEach(viewModel.days(for: month), id: \.self) { date in
+                                    if viewModel.calendar.isDate(date, equalTo: month, toGranularity: .month) {
+                                        content(date).id(date)
+                                            .background(
+                                                GeometryReader(content: { (proxy: GeometryProxy) in
+                                                    Color.clear
+                                                        .preference(key: MyPreferenceKey.self, value: MyPreferenceData(size: proxy.size))
+                                                }))
+                                        
+                                    } else {
+                                        content(date).hidden()
+                                    }
                                 }
                             }
+                            .onPreferenceChange(MyPreferenceKey.self, perform: { value in
+                                contentCellSize = value.size
+                            })
+                            .background(Color.green)
+                            .tag(month)
+                            //Tab view frame alignment to .Top didnt work dtz y
+                            Spacer()
                         }
-                        .background(Color.green)
-                        .tag(month)
                     }
                 }
-                //Fixme
-                .frame(height: 220, alignment: .center)
+                .frame(height: contentCellSize.height * 6, alignment: .center)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             } else {
@@ -64,18 +79,28 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                                 ForEach(viewModel.days(forWeek: week), id: \.self) { date in
                                     if viewModel.calendar.isDate(date, equalTo: week, toGranularity: .month) {
                                         content(date).id(date)
+                                            .background(
+                                                GeometryReader(content: { (proxy: GeometryProxy) in
+                                                    Color.clear
+                                                        .preference(key: MyPreferenceKey.self, value: MyPreferenceData(size: proxy.size))
+                                                }))
                                     } else {
                                         content(date)
                                             .opacity(0.5)
                                     }
                                 }
                             }
+                            .onPreferenceChange(MyPreferenceKey.self, perform: { value in
+                                contentCellSize = value.size
+                            })
+
                             .background(Color.yellow)
                             .tag(week)
                         }
                     }
                     //Fixme
-                    .frame(height: 37, alignment: .center)
+                    
+                    .frame(height: contentCellSize.height * 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
             }
@@ -104,12 +129,13 @@ struct CalendarView_Previews: PreviewProvider {
                 }
             }
             
-            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month) { date in
+            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .week) { date in
                 
                 Text(date.day)
                     .padding(8)
                     .background(Color.blue)
                     .cornerRadius(8)
+                    .padding([.bottom], /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
             }
         }
         
@@ -117,4 +143,20 @@ struct CalendarView_Previews: PreviewProvider {
 }
 
 
+//Key
+fileprivate struct MyPreferenceKey: PreferenceKey {
+    static var defaultValue: MyPreferenceData = MyPreferenceData(size: CGSize.zero)
+    
+    
+    static func reduce(value: inout MyPreferenceData, nextValue: () -> MyPreferenceData) {
+        value = nextValue()
+    }
+    
+    typealias Value = MyPreferenceData
+}
 
+//Value
+fileprivate struct MyPreferenceData: Equatable {
+    let size: CGSize
+    //you can give any name to this variable as usual.
+}
