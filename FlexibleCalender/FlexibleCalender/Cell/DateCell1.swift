@@ -18,6 +18,7 @@ struct DateCell1: View {
                     .padding(8)
                     .background(Color.blue)
                     .cornerRadius(20)
+                    .padding(.bottom, 10)
                     .transition(AnyTransition.scale.animation(Animation.spring().delay(Double(date.day)!/30)))
                 
             } else {
