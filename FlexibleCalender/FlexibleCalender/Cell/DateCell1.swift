@@ -21,7 +21,7 @@ struct DateCell1: View {
                     .transition(AnyTransition.scale.animation(Animation.spring().delay(Double(date.day)!/30)))
                 
             } else {
-                Text("ss")
+                Text("")
                     .onAppear(perform: {
                         withAnimation {
                             isShown = true
