@@ -23,7 +23,6 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     var viewModel: FlexibleCalenderViewModel
     let content: (Date) -> DateView
     @Binding var selectedMonth: Date
-    //TODO: get the maximum from 2 of htis
     @State private var calculatedCellSize: CGSize = .init(width: 1, height: 1)
     
     var body: some View {
