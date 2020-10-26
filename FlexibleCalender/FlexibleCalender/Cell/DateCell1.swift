@@ -16,7 +16,7 @@ struct DateCell1: View {
             if isShown {
                 Text(date.day)
                     .padding(8)
-                    .background(Color.blue)
+                    .background(Color.purple)
                     .cornerRadius(20)
                     .padding(.bottom, 10)
                     .transition(AnyTransition.scale.animation(Animation.spring().delay(Double(date.day)!/30)))

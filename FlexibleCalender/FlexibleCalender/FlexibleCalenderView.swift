@@ -91,7 +91,6 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                             .onPreferenceChange(MyPreferenceKey.self, perform: { value in
                                 calculatedCellSize = value.size
                             })
-                            .background(Color.yellow)
                             .tag(week)
                         }
                     }
