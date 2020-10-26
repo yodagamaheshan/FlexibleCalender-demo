@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DateStackCalendar<DateView>: View where DateView: View {
+struct DateGrid<DateView>: View where DateView: View {
     
     /// DateStack view
     /// - Parameters:
@@ -20,7 +20,7 @@ struct DateStackCalendar<DateView>: View where DateView: View {
         self.content = content
     }
     
-    var viewModel: FlexibleCalenderViewModel
+    var viewModel: DateGridViewModel
     let content: (Date) -> DateView
     @Binding var selectedMonth: Date
     @State private var calculatedCellSize: CGSize = .init(width: 1, height: 1)
@@ -125,7 +125,7 @@ struct CalendarView_Previews: PreviewProvider {
                 }
             }
             
-            DateStackCalendar(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month(estimateHeight: 400)) { date in
+            DateGrid(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month(estimateHeight: 400)) { date in
                 
                 Text(date.day)
                     .padding(8)

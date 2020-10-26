@@ -25,7 +25,7 @@ struct ContentView: View {
                 }
             }
             
-            DateStackCalendar(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: mode) { date in
+            DateGrid(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: mode) { date in
                 
                 DateCell1(date: date)
             }

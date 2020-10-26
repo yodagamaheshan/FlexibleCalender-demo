@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class FlexibleCalenderViewModel {
+class DateGridViewModel {
     //Fixme: change var names "mode"
     init(interval: DateInterval, mode: CalenderMode) {
         self.interval = interval
