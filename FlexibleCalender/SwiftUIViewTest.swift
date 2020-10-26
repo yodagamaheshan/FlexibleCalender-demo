@@ -16,7 +16,8 @@ struct SwiftUIViewTest: View {
                     Text("Placeholder")
                 }
             }/*@END_MENU_TOKEN@*/)
-            Rectangle()
+            .background(Color.red)
+            
         }
     }
 }
