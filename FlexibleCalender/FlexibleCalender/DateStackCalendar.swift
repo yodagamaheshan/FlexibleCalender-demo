@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DateStack<DateView>: View where DateView: View {
+struct DateStackCalendar<DateView>: View where DateView: View {
     
     /// DateStack view
     /// - Parameters:
@@ -125,7 +125,7 @@ struct CalendarView_Previews: PreviewProvider {
                 }
             }
             
-            DateStack(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month(estimateHeight: 400)) { date in
+            DateStackCalendar(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month(estimateHeight: 400)) { date in
                 
                 Text(date.day)
                     .padding(8)
