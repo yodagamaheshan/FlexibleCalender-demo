@@ -19,7 +19,7 @@
 		FB9C4D4C25413D1E00CAC446 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB9C4D4B25413D1E00CAC446 /* Preview Assets.xcassets */; };
 		FB9C4D5725413D1E00CAC446 /* FlexibleCalenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D5625413D1E00CAC446 /* FlexibleCalenderTests.swift */; };
 		FB9C4D6225413D1E00CAC446 /* FlexibleCalenderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D6125413D1E00CAC446 /* FlexibleCalenderUITests.swift */; };
-		FB9C4D7325413DBF00CAC446 /* FlexibleCalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D7225413DBF00CAC446 /* FlexibleCalenderView.swift */; };
+		FB9C4D7325413DBF00CAC446 /* DateStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D7225413DBF00CAC446 /* DateStack.swift */; };
 		FB9C4D792541412100CAC446 /* Date+dateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9C4D782541412100CAC446 /* Date+dateFormat.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		FB9C4D5D25413D1E00CAC446 /* FlexibleCalenderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexibleCalenderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9C4D6125413D1E00CAC446 /* FlexibleCalenderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleCalenderUITests.swift; sourceTree = "<group>"; };
 		FB9C4D6325413D1E00CAC446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FB9C4D7225413DBF00CAC446 /* FlexibleCalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleCalenderView.swift; sourceTree = "<group>"; };
+		FB9C4D7225413DBF00CAC446 /* DateStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStack.swift; sourceTree = "<group>"; };
 		FB9C4D782541412100CAC446 /* Date+dateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+dateFormat.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8D09C02545EB4000F63C8A /* Cell */,
-				FB9C4D7225413DBF00CAC446 /* FlexibleCalenderView.swift */,
+				FB9C4D7225413DBF00CAC446 /* DateStack.swift */,
 				FB8D09B12545B4B600F63C8A /* FlexibleCalenderViewModel.swift */,
 			);
 			path = FlexibleCalender;
@@ -314,7 +314,7 @@
 				FB9C4D4525413D1D00CAC446 /* FlexibleCalenderApp.swift in Sources */,
 				FB8D09C22545EB5D00F63C8A /* DateCell1.swift in Sources */,
 				FB8D09A82545B2F600F63C8A /* Calendar+genarageDates.swift in Sources */,
-				FB9C4D7325413DBF00CAC446 /* FlexibleCalenderView.swift in Sources */,
+				FB9C4D7325413DBF00CAC446 /* DateStack.swift in Sources */,
 				FB7435782541E647008ED28B /* CalenderModes.swift in Sources */,
 				FB7435702541540F008ED28B /* SwiftUIViewTest.swift in Sources */,
 			);

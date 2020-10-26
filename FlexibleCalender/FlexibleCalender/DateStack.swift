@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct FlexibleCalenderView<DateView>: View where DateView: View {
+struct DateStack<DateView>: View where DateView: View {
     
-    /// Description
+    /// DateStack view
     /// - Parameters:
     ///   - interval:
     ///   - selectedMonth: date relevent to showing month, then you can extract the componnets
@@ -125,7 +125,7 @@ struct CalendarView_Previews: PreviewProvider {
                 }
             }
             
-            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month(estimateHeight: 400)) { date in
+            DateStack(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month(estimateHeight: 400)) { date in
                 
                 Text(date.day)
                     .padding(8)
