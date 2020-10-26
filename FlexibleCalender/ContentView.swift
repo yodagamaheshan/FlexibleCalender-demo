@@ -9,16 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @State var selectedMonthDate = Date()
-    @State var mode = CalenderMode.week
+    @State var mode = CalenderMode.week(estimateHeight: 400)
     var body: some View {
         VStack {
             Text(selectedMonthDate.description)
-            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2019 08 11")!, end: Date.getDate(from: "2021 08 11")!), selectedMonth: $selectedMonthDate, mode: mode) { date in
+            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: mode) { date in
                 
                 DateCell1(date: date)
             }
-            Button("Change mode") {
-                mode = (mode == .month ? CalenderMode.week:.month)
+            HStack {
+                Button("Month") {
+                    mode = .month(estimateHeight: 400)
+                }
+                Button("Week") {
+                    mode = .week(estimateHeight: 50)
+                }
             }
         }
     }

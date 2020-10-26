@@ -5,9 +5,18 @@
 //  Created by Heshan Yodagama on 10/22/20.
 //
 
-import Foundation
+import SwiftUI
 
 enum CalenderMode {
-    case month
-    case week
+    case month(estimateHeight: CGFloat)
+    case week(estimateHeight: CGFloat)
+    
+    var estimateHeight: CGFloat {
+        switch self {
+        case .month(estimateHeight: let estimateHeight):
+            return estimateHeight
+        case .week(estimateHeight: let estimateHeight):
+            return estimateHeight
+        }
+    }
 }

@@ -24,19 +24,19 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     let content: (Date) -> DateView
     @Binding var selectedMonth: Date
     //TODO: get the maximum from 2 of htis
-    @State private var cellContainerSize: CGSize = .init(width: 30, height: 200)
-    @State private var contentCellSize: CGSize = .init(width: 30, height: 1)
+    @State private var calculatedCellSize: CGSize = .init(width: 1, height: 1)
     
     var body: some View {
         
-        VStack {
-            if viewModel.mode == .month {
+        Group {
+            if case .month( _) = viewModel.mode {
                 
                 TabView(selection: $selectedMonth) {
                     
                     ForEach(viewModel.months, id: \.self) { month in
                         
                         VStack {
+                            
                             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: numberOfDayasInAWeek), spacing: 0) {
                                 
                                 ForEach(viewModel.days(for: month), id: \.self) { date in
@@ -54,16 +54,15 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                                 }
                             }
                             .onPreferenceChange(MyPreferenceKey.self, perform: { value in
-                                contentCellSize = value.size
+                                calculatedCellSize = value.size
                             })
-                            .background(Color.green)
                             .tag(month)
                             //Tab view frame alignment to .Top didnt work dtz y
                             Spacer()
                         }
                     }
                 }
-                .frame(height: contentCellSize.height * 6, alignment: .center)
+                .frame(height: monthContentHeight, alignment: .center)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             } else {
@@ -91,16 +90,13 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
                                 }
                             }
                             .onPreferenceChange(MyPreferenceKey.self, perform: { value in
-                                contentCellSize = value.size
+                                calculatedCellSize = value.size
                             })
-
                             .background(Color.yellow)
                             .tag(week)
                         }
                     }
-                    //Fixme
-                    
-                    .frame(height: contentCellSize.height * 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(height: calculatedCellSize.height * 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
             }
@@ -109,7 +105,9 @@ struct FlexibleCalenderView<DateView>: View where DateView: View {
     
     //MARK: constant and supportive methods
     let numberOfDayasInAWeek = 7
-    
+    var monthContentHeight: CGFloat {
+        return max(viewModel.mode.estimateHeight, calculatedCellSize.height * 6)
+    }
 }
 
 struct CalendarView_Previews: PreviewProvider {
@@ -129,7 +127,7 @@ struct CalendarView_Previews: PreviewProvider {
                 }
             }
             
-            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .week) { date in
+            FlexibleCalenderView(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month(estimateHeight: 400)) { date in
                 
                 Text(date.day)
                     .padding(8)
