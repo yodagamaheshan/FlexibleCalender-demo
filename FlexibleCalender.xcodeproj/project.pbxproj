@@ -49,7 +49,6 @@
 		FB9C4D5D25413D1E00CAC446 /* FlexibleCalenderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexibleCalenderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9C4D6125413D1E00CAC446 /* FlexibleCalenderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleCalenderUITests.swift; sourceTree = "<group>"; };
 		FB9C4D6325413D1E00CAC446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBA09C9D254A735300F36AC4 /* banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				FB4475FB25471DBE00402CA4 /* DateGrid */,
-				FBA09C9D254A735300F36AC4 /* banner.png */,
 				FB9C4D4325413D1D00CAC446 /* FlexibleCalender */,
 				FB9C4D5525413D1E00CAC446 /* FlexibleCalenderTests */,
 				FB9C4D6025413D1E00CAC446 /* FlexibleCalenderUITests */,
