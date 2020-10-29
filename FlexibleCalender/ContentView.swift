@@ -10,7 +10,7 @@ import DateGrid
 
 struct ContentView: View {
     @State var selectedMonthDate = Date()
-    @State var mode = CalenderMode.week(estimateHeight: 400)
+    @State var mode = CalenderMode.month(estimateHeight: 400)
     var body: some View {
         VStack {
             Text(DateFormatter.monthAndYear.string(from: selectedMonthDate))
@@ -38,7 +38,7 @@ struct ContentView: View {
                     selectedMonthDate = Date()
                 }
                 Button("Week") {
-                    mode = .week(estimateHeight: 50)
+                    mode = .week(estimateHeight: 150)
                 }
             }
         }
