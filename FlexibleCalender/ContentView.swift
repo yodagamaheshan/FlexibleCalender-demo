@@ -34,11 +34,16 @@ struct ContentView: View {
             
             HStack {
                 Button("Month") {
-                    mode = .month(estimateHeight: 400)
-                    selectedMonthDate = Date()
+                    withAnimation {
+                        mode = .month(estimateHeight: 400)
+                    }
+                    
                 }
                 Button("Week") {
-                    mode = .week(estimateHeight: 150)
+                    withAnimation {
+                        mode = .week(estimateHeight: 100)
+                    }
+                    
                 }
             }
         }
