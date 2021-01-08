@@ -22,28 +22,28 @@ struct ContentView: View {
                     Text(item)
                         .bold()
                     Spacer()
-                    
+
                 }
             }
-            
+
             DateGrid(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: mode) { date in
-                
+
                 DateCell1(date: date)
             }
             .padding()
-            
+
             HStack {
                 Button("Month") {
                     withAnimation {
                         mode = .month(estimateHeight: 400)
                     }
-                    
+
                 }
                 Button("Week") {
                     withAnimation {
                         mode = .week(estimateHeight: 100)
                     }
-                    
+
                 }
             }
         }

@@ -8,23 +8,21 @@
 import SwiftUI
 
 struct SwiftUIViewTest: View {
-    
+
     var body: some View {
         VStack {
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), content: /*@START_MENU_TOKEN@*/{
-                ForEach(0 ..< 20) { item in
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), content: {
+                ForEach(0 ..< 20) { _ in
                     Text("Placeholder")
                 }
-            }/*@END_MENU_TOKEN@*/)
-            .background(Color.red)
-            
+            }).background(Color.red)
         }
     }
 }
 
 struct SwiftUIViewTest_Previews: PreviewProvider {
-    
-    static var previews: some View{
+
+    static var previews: some View {
         SwiftUIViewTest()
     }
 }

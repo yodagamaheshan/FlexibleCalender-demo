@@ -10,7 +10,7 @@ import SwiftUI
 struct DateCell1: View {
     @State private var isShown = false
     let date: Date
-    
+
     var body: some View {
         Group {
             if isShown {
@@ -20,7 +20,7 @@ struct DateCell1: View {
                     .cornerRadius(20)
                     .padding(.bottom, 10)
                     .transition(AnyTransition.scale.animation(Animation.spring().delay(Double(date.day)!/30)))
-                
+
             } else {
                 Text("")
                     .onAppear(perform: {
