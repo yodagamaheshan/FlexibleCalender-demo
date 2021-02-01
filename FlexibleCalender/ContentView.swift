@@ -26,9 +26,9 @@ struct ContentView: View {
                 }
             }
 
-            DateGrid(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: mode) { date in
+            DateGrid(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: mode) { dateGridDate in
 
-                DateCell1(date: date)
+                DateCell1(date: dateGridDate.date)
             }
             .padding()
 
