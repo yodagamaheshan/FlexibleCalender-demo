@@ -14,7 +14,12 @@ struct DateGrid<DateView>: View where DateView: View {
     ///   - interval:
     ///   - selectedMonth: date relevent to showing month, then you can extract the componnets
     ///   - content:
-    init(interval: DateInterval, selectedMonth: Binding<Date>, mode: CalenderMode, @ViewBuilder content: @escaping (Date) -> DateView) {
+    init(
+        interval: DateInterval,
+        selectedMonth: Binding<Date>,
+        mode: CalenderMode,
+        @ViewBuilder content: @escaping (Date) -> DateView
+    ) {
         self.viewModel = .init(interval: interval, mode: mode)
         self._selectedMonth = selectedMonth
         self.content = content
@@ -36,7 +41,13 @@ struct DateGrid<DateView>: View where DateView: View {
 
                         VStack {
 
-                            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: numberOfDayasInAWeek), spacing: 0) {
+                            LazyVGrid(
+                                columns:
+                                    Array(
+                                        repeating: GridItem(.flexible()),
+                                        count: numberOfDayasInAWeek
+                                    ),
+                                spacing: 0) {
 
                                 ForEach(viewModel.days(for: month), id: \.self) { date in
                                     if viewModel.calendar.isDate(date, equalTo: month, toGranularity: .month) {
@@ -44,7 +55,10 @@ struct DateGrid<DateView>: View where DateView: View {
                                             .background(
                                                 GeometryReader(content: { (proxy: GeometryProxy) in
                                                     Color.clear
-                                                        .preference(key: MyPreferenceKey.self, value: MyPreferenceData(size: proxy.size))
+                                                        .preference(
+                                                            key: MyPreferenceKey.self,
+                                                            value: MyPreferenceData(size: proxy.size)
+                                                        )
                                                 }))
 
                                     } else {
@@ -80,7 +94,10 @@ struct DateGrid<DateView>: View where DateView: View {
                                             .background(
                                                 GeometryReader(content: { (proxy: GeometryProxy) in
                                                     Color.clear
-                                                        .preference(key: MyPreferenceKey.self, value: MyPreferenceData(size: proxy.size))
+                                                        .preference(
+                                                            key: MyPreferenceKey.self,
+                                                            value: MyPreferenceData(size: proxy.size)
+                                                        )
                                                 }))
                                     } else {
                                         content(date)
@@ -125,7 +142,14 @@ struct CalendarView_Previews: PreviewProvider {
                 }
             }
 
-            DateGrid(interval: .init(start: Date.getDate(from: "2020 01 11")!, end: Date.getDate(from: "2020 12 11")!), selectedMonth: $selectedMonthDate, mode: .month(estimateHeight: 400)) { date in
+            DateGrid(
+                interval: .init(
+                    start: Date.getDate(from: "2020 01 11")!,
+                    end: Date.getDate(from: "2020 12 11")!
+                ),
+                selectedMonth: $selectedMonthDate,
+                mode: .month(estimateHeight: 400)
+            ) { date in
 
                 Text(date.day)
                     .padding(8)

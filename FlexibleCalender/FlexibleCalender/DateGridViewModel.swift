@@ -32,7 +32,19 @@ class DateGridViewModel {
             let monthFirstWeek = calendar.dateInterval(of: .weekOfMonth, for: monthInterval.start),
             let monthLastWeek = calendar.dateInterval(of: .weekOfMonth, for: monthInterval.end)
         else { return [] }
-        return calendar.generateDates( inside: DateInterval(start: monthFirstWeek.start, end: monthLastWeek.end), matching: DateComponents(hour: 0, minute: 0, second: 0)
+
+        return calendar.generateDates(
+            inside:
+                DateInterval(
+                    start: monthFirstWeek.start,
+                    end: monthLastWeek.end
+                ),
+            matching:
+                DateComponents(
+                    hour: 0,
+                    minute: 0,
+                    second: 0
+                )
         )
     }
 
@@ -42,7 +54,18 @@ class DateGridViewModel {
             let weekInterval = calendar.dateInterval(of: .weekOfMonth, for: forWeek)
         else { return [] }
 
-        let days = calendar.generateDates( inside: DateInterval(start: weekInterval.start, end: weekInterval.end), matching: DateComponents(hour: 0, minute: 0, second: 0))
+        let days = calendar.generateDates(
+            inside:
+                DateInterval(
+                    start: weekInterval.start,
+                    end: weekInterval.end
+                ),
+            matching:
+                DateComponents(
+                    hour: 0,
+                    minute: 0,
+                    second: 0)
+        )
         return days
     }
 }
